@@ -1,6 +1,6 @@
 {% set dataset_name = "ENSDFSTATE" %}
-{% set version = "2.2" %}
-{% set sha256 = "1582bd31270537d5cf09596e03481a630fb0392aadfc3984660e332d270a522e" %}
+{% set version = "2.3" %}
+{% set sha256 = "837a1c437a8d39a90a92018c3b6cc6fa38ccc631c4536b6d423bc646d3971efd" %}
 {% set env_var = "G4ENSDFSTATEDATA" %}
 {% set summary = "GEANT4 data files for nuclides properties" %}
 
@@ -8,21 +8,21 @@
 {% set install_dir = "share/Geant4/data/"+dataset_name+version %}
 
 package:
-    name: {{ name }}
-    version: {{ version }}
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-    url: https://geant4-data.web.cern.ch/geant4-data/datasets/G4{{ dataset_name }}.{{ version }}.tar.gz
-    sha256: {{ sha256 }}
-    folder: dataset
+  url: https://geant4-data.web.cern.ch/geant4-data/datasets/G4{{ dataset_name }}.{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+  folder: dataset
 
 build:
-    number: 0
-    noarch: generic
-    script:
-        - mkdir -p ${PREFIX}/{{ install_dir }}
-        - cp -r dataset/* ${PREFIX}/{{ install_dir }}
-        - ${RECIPE_DIR}/create_activation_scripts.sh {{ name }} {{ env_var }} {{ install_dir }}
+  number: 0
+  noarch: generic
+  script:
+    - mkdir -p ${PREFIX}/{{ install_dir }}
+    - cp -r dataset/* ${PREFIX}/{{ install_dir }}
+    - ${RECIPE_DIR}/create_activation_scripts.sh {{ name }} {{ env_var }} {{ install_dir }}
 
 # Conda-forge is unable to build packages that have no dependencies so add
 # `make` as a dummy build dependency
@@ -31,16 +31,16 @@ requirements:
     - make
 
 test:
-    commands:
-        - "[ \"${{ env_var }}\" == \"$CONDA_PREFIX/{{ install_dir }}\" ]"
+  commands:
+    - '[ "${{ env_var }}" == "$CONDA_PREFIX/{{ install_dir }}" ]'
 
 about:
-    home: https://geant4.web.cern.ch/
-    summary: '{{ summary }}'
-    license: OTHER
-    license_file: CREDIT
+  home: https://geant4.web.cern.ch/
+  summary: {{ summary }}
+  license: OTHER
+  license_file: CREDIT
 
 extra:
-    recipe-maintainers:
-        - tschoonj
-        - chrisburr
+  recipe-maintainers:
+    - tschoonj
+    - chrisburr
