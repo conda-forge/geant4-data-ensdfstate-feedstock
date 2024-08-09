@@ -1,6 +1,6 @@
 {% set dataset_name = "ENSDFSTATE" %}
 {% set version = "2.3" %}
-{% set sha256 = "837a1c437a8d39a90a92018c3b6cc6fa38ccc631c4536b6d423bc646d3971efd" %}
+{% set sha256 = "9444c5e0820791abd3ccaace105b0e47790fadce286e11149834e79c4a8e9203" %}
 {% set env_var = "G4ENSDFSTATEDATA" %}
 {% set summary = "GEANT4 data files for nuclides properties" %}
 
